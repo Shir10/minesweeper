@@ -1,0 +1,19 @@
+h1 {
+    color: red;
+}
+
+.board-container {
+    height: 200px;
+    width: 200px;
+    background-color: sandybrown;
+    table-layout: fixed;
+}
+
+.board {
+    height: 200px;
+    width: 200px;
+}
+
+.cell {
+    background-color: seagreen;
+}
