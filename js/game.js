@@ -16,7 +16,8 @@ function initGame() {
         isOn: false,
         shownCount: 0,
         markedCount: 0,
-        secsPassed: 0
+        secsPassed: 0,
+        lives: 3
     };
 
     if (!gLevel) {
@@ -220,6 +221,7 @@ function changeLevel(elLevel, level) {
     restart();
 }
 
+// Set the color of the numer
 function setNumberColor(cellVal, elCell) {
     var cellClass;
 

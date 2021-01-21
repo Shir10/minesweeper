@@ -1,4 +1,5 @@
 const MINE = '💣';
+const MINE_IMG = '<image class="mine" src="../images/mine.png"/>';
 
 // Sets mines on the board
 function setMines(board, row, col) {
@@ -38,8 +39,8 @@ function countMinesAround(row, col, board) {
 function renderAllMines(board) {
     for (var i = 0; i < board.length; i++) {
         for (var j = 0; j < board[i].length; j++) {
-            if (board[i][j].isMine) {
-                renderCell({ i, j }, MINE);
+            if (board[i][j].isMine && !board[i][j].isMarked) {
+                renderCell({ i, j }, MINE_IMG);
                 document.querySelector(`.cell${i}-${j}`).classList.add('shown');
             }
         }
