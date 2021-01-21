@@ -7,7 +7,7 @@ function renderBoard(board) {
         htmlStr += '<tr>';
         for (var j = 0; j < board[i].length; j++) {
             htmlStr += `<td class="cell cell${i}-${j}" onclick="cellClicked(this, ${i}, ${j})" 
-            oncontextmenu="handleRightClick(${i}, ${j})"></td>`
+            oncontextmenu="toggleMarkCell(${i}, ${j})"></td>`
         }
         htmlStr += '</tr>';
     }

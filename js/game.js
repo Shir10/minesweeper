@@ -125,8 +125,8 @@ function expandShown(row, col, board, visited) {
     if (isVictory()) gameOver(true);
 }
 
-// Handle right click
-function handleRightClick(i, j) {
+// Toggle mark cell - activated by right-clicking
+function toggleMarkCell(i, j) {
     var cell = gBoard[i][j];
 
     // If cell is shown - return
@@ -160,20 +160,12 @@ function restart() {
     initGame();
 }
 
-function cellMarked(elCell) {}
-
 // Is victory
 function isVictory() {
     // The player wins when all mines are marked and all the other cells (the numbers) are shown
     var numbersCount = Math.pow(gLevel.SIZE, 2) - gLevel.MINES;
     return gGame.markedCount === gLevel.MINES && gGame.shownCount === numbersCount;
 }
-
-
-
-
-
-
 
 // Start timer
 function startTimer() {

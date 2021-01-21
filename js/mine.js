@@ -40,6 +40,7 @@ function renderAllMines(board) {
         for (var j = 0; j < board[i].length; j++) {
             if (board[i][j].isMine) {
                 renderCell({ i, j }, MINE);
+                document.querySelector(`.cell${i}-${j}`).classList.add('shown');
             }
         }
     }
