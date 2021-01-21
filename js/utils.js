@@ -1,16 +1,16 @@
+// Render board
 function renderBoard(board) {
     var elBoard = document.querySelector('.borad');
     var htmlStr = '';
 
     for (var i = 0; i < board.length; i++) {
         htmlStr += '<tr>';
-
         for (var j = 0; j < board[i].length; j++) {
-            htmlStr += `<td class="cell cell${i}-${j}" onclick="cellClicked(this, ${i}, ${j})">${board[i][j]}</td>`
+            htmlStr += `<td class="cell cell${i}-${j}" onclick="cellClicked(this, ${i}, ${j})" 
+            oncontextmenu="handleRightClick(${i}, ${j})"></td>`
         }
         htmlStr += '</tr>';
     }
-
     elBoard.innerHTML = htmlStr;
 }
 
@@ -31,6 +31,7 @@ function getBoardCoords(board) {
     return coords;
 }
 
+// Get shuffled coordinates
 function getSuffledCoords(board) {
     var suffledCoords = getBoardCoords(board);
     var len = suffledCoords.length;
@@ -42,6 +43,30 @@ function getSuffledCoords(board) {
     return suffledCoords;
 }
 
-// function getRandomExclusive(min, max) {
-//     return Math.floor(Math.random() * (max - min) + min);
-// }
+// ------ TO DELETE ------
+// For debug
+function printBoard() {
+    var str = '';
+
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[i].length; j++) {
+            var cell = gBoard[i][j];
+            str += cell.isMine ? MINE : cell.minesAroundCount;
+            str += ' ';
+        }
+        str += '\n';
+    }
+    console.log(str);
+}
+
+function initVisitdMatrix(size) {
+    var visited = [];
+
+    for (var i = 0; i < size; i++) {
+        visited[i] = [];
+        for (var j = 0; j < size; j++) {
+            visited[i][j] = false;
+        }
+    }
+    return visited;
+}

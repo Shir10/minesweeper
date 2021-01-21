@@ -1,11 +1,27 @@
+* {
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+
 h1 {
-    color: red;
+    color: royalblue;
+    margin: 25px;
+}
+
+.top-container div {
+    display: inline-block;
+}
+
+.emoji {
+    cursor: default;
 }
 
 .board-container {
+    margin: auto;
     height: 200px;
     width: 200px;
-    background-color: sandybrown;
+    background-color: silver;
     table-layout: fixed;
 }
 
@@ -15,5 +31,23 @@ h1 {
 }
 
 .cell {
-    background-color: seagreen;
+    background-color: slategray;
+    cursor: default;
+    padding: 0;
+}
+
+.shown {
+    background-color: yellow;
+}
+
+.levels {
+    display: flex;
+    justify-content: center;
+}
+
+.level {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 20px;
 }

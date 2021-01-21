@@ -11,15 +11,23 @@
 <body onload="initGame()">
     <h1>Minesweeper</h1>
 
-    <div>
-        <div class="remaining-mines"></div>
-        <div class="time"></div>
+    <div class="game-container" oncontextmenu="return false;">
+        <div class="top-container">
+            <div>Marks: <span class="remaining-marks"></span></div>
+            <div class="emoji" onclick="restart()"></div>
+            <div>Time: <span class="time"></span></div>
+        </div>
+
+        <table class="board-container">
+            <tbody class="borad"></tbody>
+        </table>
+
+        <div class="levels">
+            <a class="level" onclick="changeLevel(this, 0)">Beginner</a>
+            <a class="level" onclick="changeLevel(this, 1)">Medium</a>
+            <a class="level" onclick="changeLevel(this, 2)">Expert</a>
+        </div>
     </div>
-
-    <table class="board-container">
-        <tbody class="borad"></tbody>
-    </table>
-
 
     <script src="js/utils.js"></script>
     <script src="js/mine.js"></script>
