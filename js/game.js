@@ -120,7 +120,9 @@ function expandShown(row, col, board, visited) {
     }
 
     renderCell({ i: row, j: col }, cellVal);
-    document.querySelector(`.cell${row}-${col}`).classList.add('shown');
+    var elCell = document.querySelector(`.cell${row}-${col}`);
+    elCell.classList.add('shown');
+    setNumberColor(cellVal, elCell);
 
     if (isVictory()) gameOver(true);
 }
@@ -216,4 +218,37 @@ function changeLevel(elLevel, level) {
     elLevel.style.color = 'purple';
 
     restart();
+}
+
+function setNumberColor(cellVal, elCell) {
+    var cellClass;
+
+    switch (cellVal) {
+        case 1:
+            cellClass = 'one';
+            break;
+        case 2:
+            cellClass = 'two';
+            break;
+        case 3:
+            cellClass = 'three';
+            break;
+        case 4:
+            cellClass = 'four';
+            break;
+        case 5:
+            cellClass = 'five';
+            break;
+        case 6:
+            cellClass = 'six';
+            break;
+        case 7:
+            cellClass = 'seven';
+            break;
+        case 8:
+            cellClass = 'eight';
+            break;
+    }
+
+    elCell.classList.add(cellClass);
 }

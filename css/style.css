@@ -6,7 +6,7 @@
 
 h1 {
     color: royalblue;
-    margin: 25px;
+    margin: 30px;
 }
 
 .top-container {
@@ -15,7 +15,7 @@ h1 {
 }
 
 .top-container div {
-    margin: 20px;
+    margin: 0 20px 20px;
 }
 
 .emoji {
@@ -44,7 +44,7 @@ h1 {
 }
 
 .shown {
-    background-color: rgb(180, 180, 180);
+    background-color: #c4c3c3;
     box-shadow: none;
 }
 
@@ -58,4 +58,39 @@ h1 {
     cursor: pointer;
     text-decoration: underline;
     margin: 20px;
+}
+
+
+/* colors */
+
+.one {
+    color: blue;
+}
+
+.two {
+    color: green;
+}
+
+.three {
+    color: red;
+}
+
+.four {
+    color: indigo;
+}
+
+.five {
+    color: maroon;
+}
+
+.six {
+    color: teal;
+}
+
+.seven {
+    color: magenta;
+}
+
+.eight {
+    color: orange;
 }
