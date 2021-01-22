@@ -1,5 +1,5 @@
-// Add previous version to gVersion array
-function pushPrevVersion() {
+// Add last version to gVersion array
+function addLastVersion() {
     var version = {
         game: {...gGame },
         board: copyBoard(),

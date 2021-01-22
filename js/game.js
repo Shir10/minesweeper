@@ -23,23 +23,17 @@ function initGame() {
         safeClicks: 3
     };
 
-    if (!gLevel) {
-        gLevel = {
-            SIZE: 4,
-            MINES: 2
-        };
-    }
+    if (!gLevel) changeLevel(MEDIUM);
     gVisited = initVisitdMatrix(gLevel.SIZE);
     gVersions = [];
+    gBoard = buildBoard();
+    renderBoard(gBoard);
 
     document.querySelector('.marks').innerText = gLevel.MINES;
     document.querySelector('.emoji').innerText = START_EMOJI;
     document.querySelector('.time').innerText = 0;
     document.querySelector('.lives').innerText = '❤️'.repeat(3);
     document.querySelector('.safe-clicks').innerText = 3;
-
-    gBoard = buildBoard();
-    renderBoard(gBoard);
 }
 
 // Build board
@@ -94,13 +88,13 @@ function cellClicked(elCell, i, j) {
     if (cell.isMine) {
         gGame.lives--;
         if (!gGame.lives) {
-            pushPrevVersion();
+            addLastVersion();
             renderAllMines(gBoard, elCell);
             gameOver(false);
             document.querySelector('.lives').innerText = '';
         } else handleMistake(elCell, i, j);
     } else {
-        pushPrevVersion();
+        addLastVersion();
         expandShown(i, j, gBoard, gVisited);
     }
 }
@@ -114,7 +108,7 @@ function handleMistake(elCell, i, j) {
         renderCell({ i, j }, EMPTY);
         elCell.classList.remove('shown', 'red');
         document.querySelector('.lives').innerText = '❤️'.repeat(gGame.lives);
-    }, 500);
+    }, 300);
 }
 
 // Expand shown cells - if no mines around
@@ -160,7 +154,7 @@ function toggleMarkCell(i, j) {
     if (cell.isShown) return;
     // If game is over - return
     if (!gGame.isOn && gGame.shownCount !== 0) return;
-    pushPrevVersion();
+    addLastVersion();
 
     // handle cell fields
     cell.isMarked = !cell.isMarked;
@@ -182,9 +176,8 @@ function gameOver(isWin) {
     document.querySelector('.emoji').innerText = isWin ? WIN_EMOJI : LOSE_EMOJI;
 }
 
-// Is victory
+// Is victory - The player wins when all mines are marked and all the other cells (the numbers) are shown
 function isVictory() {
-    // The player wins when all mines are marked and all the other cells (the numbers) are shown
     var numbersCount = Math.pow(gLevel.SIZE, 2) - gLevel.MINES;
     return gGame.markedCount === gLevel.MINES && gGame.shownCount === numbersCount;
 }

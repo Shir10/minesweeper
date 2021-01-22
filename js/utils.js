@@ -20,7 +20,6 @@ function renderCell(coord, value) {
     elCell.innerHTML = value;
 }
 
-
 // Get all board coordinates
 function getBoardCoords(board) {
     var coords = [];
@@ -72,4 +71,38 @@ function printBoard() {
         str += '\n';
     }
     console.log(str);
+}
+
+// Set number color
+function setNumberColor(elCell, cellVal) {
+    var cellClass;
+
+    switch (cellVal) {
+        case 1:
+            cellClass = 'one';
+            break;
+        case 2:
+            cellClass = 'two';
+            break;
+        case 3:
+            cellClass = 'three';
+            break;
+        case 4:
+            cellClass = 'four';
+            break;
+        case 5:
+            cellClass = 'five';
+            break;
+        case 6:
+            cellClass = 'six';
+            break;
+        case 7:
+            cellClass = 'seven';
+            break;
+        case 8:
+            cellClass = 'eight';
+            break;
+    }
+
+    elCell.classList.add(cellClass);
 }
