@@ -70,7 +70,7 @@ function startGame(i, j) {
     printBoard(); // ------ TO DELETE ------
 }
 
-// Sets numbers on the board
+// Sets numbers on board
 function setNumbers(board) {
     for (var i = 0; i < board.length; i++) {
         for (var j = 0; j < board[i].length; j++) {
@@ -90,16 +90,17 @@ function cellClicked(elCell, i, j) {
     if (cell.isMarked) return;
     if (!gGame.shownCount && !gGame.secsPassed) startGame(i, j);
     if (!gGame.isOn || cell.isShown) return;
-    pushPrevVersion();
 
     if (cell.isMine) {
         gGame.lives--;
         if (!gGame.lives) {
+            pushPrevVersion();
             renderAllMines(gBoard, elCell);
             gameOver(false);
             document.querySelector('.lives').innerText = '';
         } else handleMistake(elCell, i, j);
     } else {
+        pushPrevVersion();
         expandShown(i, j, gBoard, gVisited);
     }
 }
@@ -175,16 +176,10 @@ function toggleMarkCell(i, j) {
 }
 
 // Game Over
-function gameOver(isVictory) {
+function gameOver(isWin) {
     gGame.isOn = false;
     stopTimer();
-    document.querySelector('.emoji').innerText = isVictory ? WIN_EMOJI : LOSE_EMOJI;
-}
-
-// Restart game
-function restart() {
-    stopTimer();
-    initGame();
+    document.querySelector('.emoji').innerText = isWin ? WIN_EMOJI : LOSE_EMOJI;
 }
 
 // Is victory
@@ -192,6 +187,12 @@ function isVictory() {
     // The player wins when all mines are marked and all the other cells (the numbers) are shown
     var numbersCount = Math.pow(gLevel.SIZE, 2) - gLevel.MINES;
     return gGame.markedCount === gLevel.MINES && gGame.shownCount === numbersCount;
+}
+
+// Restart game
+function restart() {
+    stopTimer();
+    initGame();
 }
 
 // Start timer

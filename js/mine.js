@@ -1,7 +1,7 @@
 const MINE = '💣';
 const MINE_IMG = '<img class="mine" src="images/mine.png"/>';
 
-// Sets mines on the board
+// Sets mines on board
 function setMines(board, row, col) {
     var shuffledCoords = getSuffledCoords(board);
 

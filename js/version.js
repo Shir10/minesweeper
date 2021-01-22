@@ -40,12 +40,16 @@ function undo() {
 
 // Render version
 function renderVersion(version) {
-    gGame = version.game;
-    gBoard = version.board;
-    gVisited = version.visited;
+    var { game, board, visited } = version;
+    gGame = {
+        ...gGame,
+        shownCount: game.shownCount,
+        markedCount: game.markedCount,
+    };
+    gBoard = board;
+    gVisited = visited;
 
     document.querySelector('.remaining-marks').innerText = gLevel.MINES - gGame.markedCount;
-    document.querySelector('.lives').innerText = '❤️'.repeat(gGame.lives);
     document.querySelector('.hints').innerText = gGame.hints;
 
     for (var i = 0; i < gBoard.length; i++) {
