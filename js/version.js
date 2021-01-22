@@ -49,8 +49,8 @@ function renderVersion(version) {
     gBoard = board;
     gVisited = visited;
 
-    document.querySelector('.remaining-marks').innerText = gLevel.MINES - gGame.markedCount;
-    document.querySelector('.hints').innerText = gGame.hints;
+    document.querySelector('.marks').innerText = gLevel.MINES - gGame.markedCount;
+    document.querySelector('.safe-clicks').innerText = gGame.safeClicks;
 
     for (var i = 0; i < gBoard.length; i++) {
         for (var j = 0; j < gBoard[i].length; j++) {

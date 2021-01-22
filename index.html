@@ -12,20 +12,20 @@
     <h1>Minesweeper</h1>
 
     <div class="game-container">
-        <div class="top-container">
-            <div class="detail-container">Marks: <span class="remaining-marks"></span></div>
-            <div class="emoji" onclick="restart()"></div>
-            <div class="detail-container">Time: <span class="time"></span></div>
+        <div class="data-container">
+            <div class="side-data">Marks: <span class="marks"></span></div>
+            <div class="emoji middle-data" onclick="restart()"></div>
+            <div class="side-data">Time: <span class="time"></span></div>
         </div>
 
         <table class="board-container" oncontextmenu="return false;">
             <tbody class="borad"></tbody>
         </table>
 
-        <div class="bottom-container">
-            <div class="detail-container"><button onclick="undo()">Undo</button></div>
-            <div class="detail-container"><span class="lives"></span></div>
-            <div class="detail-container"><button>Hints: <span class="hints"></span></button></div>
+        <div class="data-container">
+            <button class="side-data" onclick="undo()">Undo</button>
+            <label class="lives middle-data"></label>
+            <button class="side-data" onclick="safeClick()">Safe clicks: <span class="safe-clicks"></span></button>
         </div>
 
         <div class="levels">
@@ -36,6 +36,7 @@
     </div>
 
     <script src="js/utils.js"></script>
+    <script src="js/safeClick.js"></script>
     <script src="js/version.js"></script>
     <script src="js/level.js"></script>
     <script src="js/mine.js"></script>

@@ -45,8 +45,21 @@ function getSuffledCoords(board) {
     return suffledCoords;
 }
 
+// Initialize visited matrix
+function initVisitdMatrix(size) {
+    var visited = [];
+
+    for (var i = 0; i < size; i++) {
+        visited[i] = [];
+        for (var j = 0; j < size; j++) {
+            visited[i][j] = false;
+        }
+    }
+    return visited;
+}
+
 // ------ TO DELETE ------
-// For debug
+// Pint board - For debug
 function printBoard() {
     var str = '';
 
@@ -59,17 +72,4 @@ function printBoard() {
         str += '\n';
     }
     console.log(str);
-}
-
-// Initialize visited matrix
-function initVisitdMatrix(size) {
-    var visited = [];
-
-    for (var i = 0; i < size; i++) {
-        visited[i] = [];
-        for (var j = 0; j < size; j++) {
-            visited[i][j] = false;
-        }
-    }
-    return visited;
 }

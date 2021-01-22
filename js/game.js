@@ -20,7 +20,7 @@ function initGame() {
         markedCount: 0,
         secsPassed: 0,
         lives: 3,
-        hints: 3
+        safeClicks: 3
     };
 
     if (!gLevel) {
@@ -32,11 +32,11 @@ function initGame() {
     gVisited = initVisitdMatrix(gLevel.SIZE);
     gVersions = [];
 
-    document.querySelector('.remaining-marks').innerText = gLevel.MINES;
+    document.querySelector('.marks').innerText = gLevel.MINES;
     document.querySelector('.emoji').innerText = START_EMOJI;
     document.querySelector('.time').innerText = 0;
     document.querySelector('.lives').innerText = '❤️'.repeat(3);
-    document.querySelector('.hints').innerText = 3;
+    document.querySelector('.safe-clicks').innerText = 3;
 
     gBoard = buildBoard();
     renderBoard(gBoard);
@@ -170,7 +170,7 @@ function toggleMarkCell(i, j) {
     // handle game fields
     gGame.markedCount += cell.isMarked ? 1 : -1;
     var remainingMarks = gLevel.MINES - gGame.markedCount;
-    document.querySelector('.remaining-marks').innerText = remainingMarks;
+    document.querySelector('.marks').innerText = remainingMarks;
 
     if (isVictory()) gameOver(true);
 }
