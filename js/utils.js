@@ -20,6 +20,8 @@ function renderCell(coord, value) {
     elCell.innerHTML = value;
 }
 
+
+// Get all board coordinates
 function getBoardCoords(board) {
     var coords = [];
 
@@ -59,6 +61,7 @@ function printBoard() {
     console.log(str);
 }
 
+// Initialize visited matrix
 function initVisitdMatrix(size) {
     var visited = [];
 

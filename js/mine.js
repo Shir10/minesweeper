@@ -36,7 +36,7 @@ function countMinesAround(row, col, board) {
 }
 
 // Render all mines
-function renderAllMines(board) {
+function renderAllMines(board, elCell) {
     for (var i = 0; i < board.length; i++) {
         for (var j = 0; j < board[i].length; j++) {
             if (board[i][j].isMine && !board[i][j].isMarked) {
@@ -45,4 +45,5 @@ function renderAllMines(board) {
             }
         }
     }
+    elCell.classList.add('red');
 }

@@ -13,14 +13,20 @@
 
     <div class="game-container">
         <div class="top-container">
-            <div class="remaining-marks-container">Marks: <span class="remaining-marks"></span></div>
+            <div class="detail-container">Marks: <span class="remaining-marks"></span></div>
             <div class="emoji" onclick="restart()"></div>
-            <div class="time-container">Time: <span class="time"></span></div>
+            <div class="detail-container">Time: <span class="time"></span></div>
         </div>
 
         <table class="board-container" oncontextmenu="return false;">
             <tbody class="borad"></tbody>
         </table>
+
+        <div class="bottom-container">
+            <div class="detail-container"><button onclick="undo()">Undo</button></div>
+            <div class="detail-container"><span class="lives"></span></div>
+            <div class="detail-container"><button>Hints: <span class="hints"></span></button></div>
+        </div>
 
         <div class="levels">
             <a class="level" onclick="changeLevel(this, 0)">Beginner</a>
@@ -30,6 +36,8 @@
     </div>
 
     <script src="js/utils.js"></script>
+    <script src="js/version.js"></script>
+    <script src="js/level.js"></script>
     <script src="js/mine.js"></script>
     <script src="js/game.js"></script>
 </body>

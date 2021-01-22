@@ -6,36 +6,36 @@
 
 h1 {
     color: royalblue;
-    margin: 30px;
+    margin: 30px auto 10px;
+    text-shadow: 1px 1px slategray;
 }
 
-.top-container {
+.top-container,
+.bottom-container {
     display: flex;
     justify-content: center;
 }
 
 .top-container div {
-    margin: 0 20px 20px;
+    margin: 20px;
 }
 
-.remaining-marks-container,
-.time-container {
-    width: 100px;
+.bottom-container div {
+    margin: 20px 0;
+}
+
+.detail-container {
+    width: 90px;
 }
 
 .emoji {
-    cursor: default;
+    cursor: pointer;
 }
 
 .board-container {
     margin: auto;
     background-color: rgb(112, 112, 112);
     table-layout: fixed;
-}
-
-.board {
-    height: 200px;
-    width: 200px;
 }
 
 .cell {
@@ -63,12 +63,16 @@ h1 {
     cursor: pointer;
     text-decoration: underline;
     margin: 20px;
+    font-size: 14px;
 }
 
 .mine {
     height: 17px;
-    /* width: 20px; */
     margin-top: 3px;
+}
+
+.red {
+    background-color: red;
 }
 
 

@@ -2,6 +2,7 @@ const START_EMOJI = '😊';
 const WIN_EMOJI = '😎';
 const LOSE_EMOJI = '😫';
 const FLAG = '🚩';
+const LIFE = '❤️';
 const EMPTY = '';
 
 var gGame;
@@ -9,6 +10,7 @@ var gLevel;
 var gBoard;
 var gVisited;
 var gTimeInterval;
+var gVersions;
 
 // Initialize the game
 function initGame() {
@@ -17,7 +19,8 @@ function initGame() {
         shownCount: 0,
         markedCount: 0,
         secsPassed: 0,
-        lives: 3
+        lives: 3,
+        hints: 3
     };
 
     if (!gLevel) {
@@ -27,10 +30,14 @@ function initGame() {
         };
     }
     gVisited = initVisitdMatrix(gLevel.SIZE);
+    gVersions = [];
 
     document.querySelector('.remaining-marks').innerText = gLevel.MINES;
     document.querySelector('.emoji').innerText = START_EMOJI;
     document.querySelector('.time').innerText = 0;
+    document.querySelector('.lives').innerText = '❤️'.repeat(3);
+    document.querySelector('.hints').innerText = 3;
+
     gBoard = buildBoard();
     renderBoard(gBoard);
 }
@@ -81,16 +88,32 @@ function cellClicked(elCell, i, j) {
     var cell = gBoard[i][j];
 
     if (cell.isMarked) return;
-    if (!gGame.shownCount) startGame(i, j);
+    if (!gGame.shownCount && !gGame.secsPassed) startGame(i, j);
     if (!gGame.isOn || cell.isShown) return;
+    pushPrevVersion();
 
     if (cell.isMine) {
-        elCell.style.backgroundColor = 'red';
-        renderAllMines(gBoard);
-        gameOver(false);
+        gGame.lives--;
+        if (!gGame.lives) {
+            renderAllMines(gBoard, elCell);
+            gameOver(false);
+            document.querySelector('.lives').innerText = '';
+        } else handleMistake(elCell, i, j);
     } else {
         expandShown(i, j, gBoard, gVisited);
     }
+}
+
+// Handle mistake - when the player clicked on a mine
+function handleMistake(elCell, i, j) {
+    renderCell({ i, j }, MINE_IMG);
+    elCell.classList.add('shown', 'red');
+
+    setTimeout(() => {
+        renderCell({ i, j }, EMPTY);
+        elCell.classList.remove('shown', 'red');
+        document.querySelector('.lives').innerText = '❤️'.repeat(gGame.lives);
+    }, 500);
 }
 
 // Expand shown cells - if no mines around
@@ -123,7 +146,7 @@ function expandShown(row, col, board, visited) {
     renderCell({ i: row, j: col }, cellVal);
     var elCell = document.querySelector(`.cell${row}-${col}`);
     elCell.classList.add('shown');
-    setNumberColor(cellVal, elCell);
+    setNumberColor(elCell, cellVal);
 
     if (isVictory()) gameOver(true);
 }
@@ -136,6 +159,7 @@ function toggleMarkCell(i, j) {
     if (cell.isShown) return;
     // If game is over - return
     if (!gGame.isOn && gGame.shownCount !== 0) return;
+    pushPrevVersion();
 
     // handle cell fields
     cell.isMarked = !cell.isMarked;
@@ -188,69 +212,4 @@ function renderTime(startTime) {
 
     document.querySelector('.time').innerText = elapsedTimeInSec;
     gGame.secsPassed = elapsedTimeInSec;
-}
-
-// Change level
-function changeLevel(elLevel, level) {
-    switch (level) {
-        case 0:
-            var size = 4;
-            var mines = 2;
-            break;
-        case 1:
-            var size = 8;
-            var mines = 12;
-            break;
-        case 2:
-            var size = 12;
-            var mines = 30;
-            break;
-    }
-
-    gLevel = {
-        SIZE: size,
-        MINES: mines
-    };
-
-    var elLevels = document.querySelectorAll('.level');
-    for (var i = 0; i < elLevels.length; i++) {
-        elLevels[i].style.color = 'blue';
-    }
-    elLevel.style.color = 'purple';
-
-    restart();
-}
-
-// Set the color of the numer
-function setNumberColor(cellVal, elCell) {
-    var cellClass;
-
-    switch (cellVal) {
-        case 1:
-            cellClass = 'one';
-            break;
-        case 2:
-            cellClass = 'two';
-            break;
-        case 3:
-            cellClass = 'three';
-            break;
-        case 4:
-            cellClass = 'four';
-            break;
-        case 5:
-            cellClass = 'five';
-            break;
-        case 6:
-            cellClass = 'six';
-            break;
-        case 7:
-            cellClass = 'seven';
-            break;
-        case 8:
-            cellClass = 'eight';
-            break;
-    }
-
-    elCell.classList.add(cellClass);
 }
