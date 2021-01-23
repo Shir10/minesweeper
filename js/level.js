@@ -20,11 +20,15 @@ function changeLevel(level) {
     }
 
     gLevel = {
+        id: level,
         SIZE: size,
-        MINES: mines
+        MINES: mines,
+        bestTime: Infinity
     };
 
-    // Handle level css
+    getBestTime();
+
+    // Handle level elements css
     var elLevels = document.querySelectorAll('.level');
     for (var i = 0; i < elLevels.length; i++) {
         var elLevel = elLevels[i];
@@ -33,4 +37,19 @@ function changeLevel(level) {
     }
 
     restart();
+}
+
+// Get level best time
+function getBestTime() {
+    var bestTime = localStorage.getItem(`bestTime-${gLevel.id}`);
+
+    if (!bestTime) {
+        localStorage.setItem(`bestTime-${gLevel.id}`, Infinity);
+        document.querySelector('.best-time-container').style.display = 'none';
+    } else if (bestTime === Infinity.toString()) {
+        document.querySelector('.best-time-container').style.display = 'none';
+    } else {
+        document.querySelector('.best-time').innerText = bestTime;
+        document.querySelector('.best-time-container').style.display = 'block';
+    }
 }

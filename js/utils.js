@@ -57,8 +57,12 @@ function initVisitdMatrix(size) {
     return visited;
 }
 
-// ------ TO DELETE ------
-// Pint board - For debug
+// Get randon int - exclusive
+function getRandomIntegerExclusive(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+// Print board - For debug
 function printBoard() {
     var str = '';
 

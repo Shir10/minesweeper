@@ -55,6 +55,13 @@ h1 {
 }
 
 
+/* Best time */
+
+.best-time-container {
+    margin-top: 10px;
+}
+
+
 /* Levels */
 
 .levels {
@@ -89,6 +96,10 @@ h1 {
 
 .bold {
     font-weight: bold;
+}
+
+.safe {
+    background-color: #6498fa;
 }
 
 

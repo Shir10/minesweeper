@@ -20,7 +20,7 @@ function initGame() {
         markedCount: 0,
         secsPassed: 0,
         lives: 3,
-        safeClicks: 3
+        safeClicks: 3,
     };
 
     if (!gLevel) changeLevel(MEDIUM);
@@ -60,8 +60,7 @@ function startGame(i, j) {
     setMines(gBoard, i, j);
     setNumbers(gBoard);
     startTimer();
-
-    printBoard(); // ------ TO DELETE ------
+    printBoard(); // For debug
 }
 
 // Sets numbers on board
@@ -156,12 +155,12 @@ function toggleMarkCell(i, j) {
     if (!gGame.isOn && gGame.shownCount !== 0) return;
     addLastVersion();
 
-    // handle cell fields
+    // Update cell
     cell.isMarked = !cell.isMarked;
     var cellDisplay = cell.isMarked ? FLAG : EMPTY;
     renderCell({ i, j }, cellDisplay);
 
-    // handle game fields
+    // Update game
     gGame.markedCount += cell.isMarked ? 1 : -1;
     var remainingMarks = gLevel.MINES - gGame.markedCount;
     document.querySelector('.marks').innerText = remainingMarks;
@@ -174,6 +173,14 @@ function gameOver(isWin) {
     gGame.isOn = false;
     stopTimer();
     document.querySelector('.emoji').innerText = isWin ? WIN_EMOJI : LOSE_EMOJI;
+
+    // Update best time
+    if (isWin && gGame.secsPassed < gLevel.bestTime) {
+        gLevel.bestTime = gGame.secsPassed;
+        localStorage.setItem(`bestTime-${gLevel.id}`, gLevel.bestTime);
+        document.querySelector('.best-time').innerHTML = gGame.secsPassed;
+        document.querySelector('.best-time-container').style.display = 'block';
+    }
 }
 
 // Is victory - The player wins when all mines are marked and all the other cells (the numbers) are shown
