@@ -32,7 +32,7 @@ function initGame() {
     document.querySelector('.marks').innerText = gLevel.MINES;
     document.querySelector('.emoji').innerText = START_EMOJI;
     document.querySelector('.time').innerText = 0;
-    document.querySelector('.lives').innerText = '❤️'.repeat(3);
+    document.querySelector('.lives').innerText = LIFE.repeat(3);
     document.querySelector('.safe-clicks').innerText = 3;
 }
 
@@ -106,7 +106,7 @@ function handleMistake(elCell, i, j) {
     setTimeout(() => {
         renderCell({ i, j }, EMPTY);
         elCell.classList.remove('shown', 'red');
-        document.querySelector('.lives').innerText = '❤️'.repeat(gGame.lives);
+        document.querySelector('.lives').innerText = LIFE.repeat(gGame.lives);
     }, 300);
 }
 
@@ -198,7 +198,7 @@ function restart() {
 // Start timer
 function startTimer() {
     var startTime = Date.now();
-    gTimeInterval = setInterval(() => renderTime(startTime), 1000);
+    gTimeInterval = setInterval(() => renderTime(startTime), 10);
 }
 
 // Stop timer
@@ -209,8 +209,42 @@ function stopTimer() {
 // Render time
 function renderTime(startTime) {
     var elapsedTime = Date.now() - startTime;
-    var elapsedTimeInSec = (elapsedTime / 1000).toFixed(0);
+    var elapsedTimeInSec = (elapsedTime / 1000).toFixed(2);
 
     document.querySelector('.time').innerText = elapsedTimeInSec;
     gGame.secsPassed = elapsedTimeInSec;
+}
+
+// Set number color
+function setNumberColor(elCell, cellVal) {
+    var cellClass;
+
+    switch (cellVal) {
+        case 1:
+            cellClass = 'one';
+            break;
+        case 2:
+            cellClass = 'two';
+            break;
+        case 3:
+            cellClass = 'three';
+            break;
+        case 4:
+            cellClass = 'four';
+            break;
+        case 5:
+            cellClass = 'five';
+            break;
+        case 6:
+            cellClass = 'six';
+            break;
+        case 7:
+            cellClass = 'seven';
+            break;
+        case 8:
+            cellClass = 'eight';
+            break;
+    }
+
+    elCell.classList.add(cellClass);
 }

@@ -70,43 +70,9 @@ function printBoard() {
         for (var j = 0; j < gBoard[i].length; j++) {
             var cell = gBoard[i][j];
             str += cell.isMine ? MINE : cell.minesAroundCount;
-            str += ' ';
+            str += '\t';
         }
         str += '\n';
     }
     console.log(str);
-}
-
-// Set number color
-function setNumberColor(elCell, cellVal) {
-    var cellClass;
-
-    switch (cellVal) {
-        case 1:
-            cellClass = 'one';
-            break;
-        case 2:
-            cellClass = 'two';
-            break;
-        case 3:
-            cellClass = 'three';
-            break;
-        case 4:
-            cellClass = 'four';
-            break;
-        case 5:
-            cellClass = 'five';
-            break;
-        case 6:
-            cellClass = 'six';
-            break;
-        case 7:
-            cellClass = 'seven';
-            break;
-        case 8:
-            cellClass = 'eight';
-            break;
-    }
-
-    elCell.classList.add(cellClass);
 }
