@@ -49,6 +49,7 @@ function getBestTime() {
     } else if (bestTime === Infinity.toString()) {
         document.querySelector('.best-time-container').style.display = 'none';
     } else {
+        gLevel.bestTime = bestTime;
         document.querySelector('.best-time').innerText = bestTime;
         document.querySelector('.best-time-container').style.display = 'block';
     }
