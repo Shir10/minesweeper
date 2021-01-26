@@ -41,12 +41,12 @@ function changeLevel(level) {
 
 // Get level best time
 function getBestTime() {
-    var bestTime = localStorage.getItem(`bestTime-${gLevel.id}`);
+    var bestTime = parseFloat(localStorage.getItem(`bestTime-${gLevel.id}`));
 
     if (!bestTime) {
         localStorage.setItem(`bestTime-${gLevel.id}`, Infinity);
         document.querySelector('.best-time-container').style.display = 'none';
-    } else if (bestTime === Infinity.toString()) {
+    } else if (bestTime === Infinity) {
         document.querySelector('.best-time-container').style.display = 'none';
     } else {
         gLevel.bestTime = bestTime;

@@ -212,7 +212,7 @@ function renderTime(startTime) {
     var elapsedTimeInSec = (elapsedTime / 1000).toFixed(2);
 
     document.querySelector('.time').innerText = elapsedTimeInSec;
-    gGame.secsPassed = elapsedTimeInSec;
+    gGame.secsPassed = parseFloat(elapsedTimeInSec);
 }
 
 // Set number color
